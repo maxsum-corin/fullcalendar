@@ -21,15 +21,17 @@ css('basic/basic.css');
 css('agenda/agenda.css');
 cssprint('common/print.css');
 
-if (!legacy) {
-	jslib('../lib/' + JQUERY);
-	if (!noui) {
-		jslib('../lib/' + JQUERY_UI);
-	}
-}else{
-	jslib('../lib/' + JQUERY_LEGACY);
-	if (!noui) {
-		jslib('../lib/' + JQUERY_UI_LEGACY);
+if (!window['jQuery']) {
+	if (!legacy) {
+		jslib('../lib/' + JQUERY);
+		if (!jQuery['ui'] && !noui) {
+			jslib('../lib/' + JQUERY_UI);
+		}
+	} else {
+		jslib('../lib/' + JQUERY_LEGACY);
+		if (!jQuery['ui'] && !noui) {
+			jslib('../lib/' + JQUERY_UI_LEGACY);
+		}
 	}
 }
 
